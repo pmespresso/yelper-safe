@@ -1,0 +1,35 @@
+{
+  "name": "yelper",
+  "version": "1.0.0",
+  "description": "A way to Yelp through Amazon Echo. Quite the UX.",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yjkimjunior/yelper.git"
+  },
+  "keywords": [
+    "yelp",
+    "echo",
+    "amazon",
+    "food"
+  ],
+  "author": "YJ Kim",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yjkimjunior/yelper/issues"
+  },
+  "homepage": "https://github.com/yjkimjunior/yelper#readme",
+  "dependencies": {
+    "alexa-app": "^2.3.2",
+    "chai": "^3.5.0",
+    "chai-as-promised": "^5.3.0",
+    "lodash": "^4.6.1",
+    "mocha": "^2.4.5",
+    "request-promise": "^2.0.1",
+    "oauth-request-promise": "0.1.1"
+  }
+}
