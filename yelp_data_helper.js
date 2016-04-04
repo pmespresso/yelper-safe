@@ -69,19 +69,15 @@ YelpDataHelper.prototype.getYelpRestaurants = function () {
 var j = 0;
 
 YelpDataHelper.prototype.formatRestaurantNameAndType = function(data) {
-	var restaurants = _.template('You should check out ${restaurantName}. They have ${restaurantType}. To hear more, say, Show More.') ({
+	var restaurants = _.template('You should check out ${restaurantName}. They have ${restaurantType}. To hear about another restaurant, say, Show More.') ({
 		// They have ${restaurantType[0]} food. There is also ${restaurantName[1]} with ${restaurantType[1]} food or ${restaurantName[2]} with ${restaurantType[2]} food.')({
     restaurantName: initialYelpData['names'][j],
     restaurantType: initialYelpData.categories[j]
-    // restaurantType: [data.businesses[i].categories[0][0], data.businesses[i+1].categories[0][0], data.businesses[i+2].categories[0][0]]
   });
 
 	j += 1;
 	return restaurants;
 };
 
-// YelpDataHelper.prototype.formatRestaurantNameAndType.prototype.addToI = function() {
-// 	this.i.push(1);
-// }
 
 module.exports = YelpDataHelper;
