@@ -18,8 +18,7 @@ yelp.setToken({
     secret: config.SECRET
 });
 
-// I just need name, category, rating, phone number, mobileURL, address
-var initialYelpData = {
+var initialYelpData =  {
 	'names': [],
 	'categories': [],
 	'ratings': [],
@@ -44,16 +43,11 @@ YelpDataHelper.prototype.requestYelpStatus = function () {
 				initialYelpData['address'].push(response.body.businesses[i].location);
 			}
 
-			console.log("Here is: " + initialYelpData.names);
-			console.log("Here is: " + initialYelpData.categories);
-			console.log("Here is: " + initialYelpData.ratings);
-			console.log("Here is: " + initialYelpData.phoneNumber);
-			console.log("Here is: " + initialYelpData.mobileURL);
-			console.log("Here is: " + initialYelpData.address[0]);
-			
+			console.log(initialYelpData);
+			console.log("success - memoized Yelp General Food Search Data");
 			return response.body;
-			}
-		);
+		}
+	);
 };
 
 YelpDataHelper.prototype.getYelpRestaurants = function () {
@@ -72,12 +66,13 @@ YelpDataHelper.prototype.formatRestaurantNameAndType = function(data) {
 	var restaurants = _.template('You should check out ${restaurantName}. They have ${restaurantType}. To hear about another restaurant, say, Show More.') ({
 		// They have ${restaurantType[0]} food. There is also ${restaurantName[1]} with ${restaurantType[1]} food or ${restaurantName[2]} with ${restaurantType[2]} food.')({
     restaurantName: initialYelpData['names'][j],
-    restaurantType: initialYelpData.categories[j]
+    restaurantType: initialYelpData['categories'][j]
   });
 
 	j += 1;
 	return restaurants;
 };
 
+YelpDataHelper.prototype.initialYelpData = initialYelpData;
 
 module.exports = YelpDataHelper;

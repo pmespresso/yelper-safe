@@ -10,6 +10,8 @@ var YelpDataHelper = require('./yelp_data_helper');
 
 var yelpHelper = new YelpDataHelper();
 
+var initialYelpData = yelpHelper.initialYelpData;
+
 app.launch(function(req, res) {
 	var prompt = 'For a Yelp recommended restaurant, say I am hungry';
 	res.say(prompt).reprompt(prompt).shouldEndSession(false);
@@ -55,16 +57,41 @@ app.intent('Open',
 	},
 
 	function(req, res) {
-		var reprompt = '';
+		var prompt = 'Say show me and then the restaurants name or the type of restaurant. ';
+		var reprompt = 'Say show me and then the restaurants name or the type of restaurant. For example, you could say, show me chinese food.';
 
 		var restaurantName = req.slot("RESTAURANT_NAME");
 		var restaurantType = req.slot("RESTAURANT_TYPE");
 
-		
+		console.log("name slot: " + restaurantName);
+		console.log("type slot: " + restaurantType);
+		console.log("initial yelp data: " + initialYelpData.names);
 
-		
-		console.log(restaurantName);
 
+		/* TODO 
+
+		 * If Hungry request wasn't called first 
+		 * You need to call so that the data gets memoized.
+
+		*/
+
+		// find out which index of initialYelpData['names'] corresponds to restaurantName
+		// or initialYelpData['categories'] corresponds to restaurantType.
+
+
+		/* TODO 
+		* At some point this will have to check for any slot that may have been filled
+		*/
+		if (restaurantName === undefined) {
+			var indexOfCategory = _.indexOf(initialYelpData['categories'], restaurantType);
+		} else if (restaurantType === undefined) {
+			var indexOfName = _.indexOf(initialYelpData['names'], restaurantName);
+		} else {
+			var indexOfName = _.indexOf(initialYelpData['names'], restaurantName);
+		}
+
+		console.log(indexOfName);
+		console.log(indexOfCategory);
 });
 
 
